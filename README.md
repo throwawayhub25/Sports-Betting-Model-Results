@@ -1,5 +1,4 @@
-# Sports-Betting-Model-Results
-# Sports-Betting-Model
+
 # Profitable-Sports-Betting-Model-Results
 This repo shows the results/profitability of an NBA moneyline sports betting model I made in R and Python that consistently achieves around 10% ROI. In this repo I show the end results of using a machine learning algorithm to generate game win probabilities and exploit those probabilities to place long-term profitable moneyline wagers (known as positive EV betting). I also demonstrate validity and trustworthiness of the algorithm through A) hypothesis testing of the model's outputs as well as B) repeated backtesting on real sportsbooks odds to confirm that the model is indeed profitable. Please note that this repo shows ONLY THE RESULTS of the model NOT THE FEATURE ENGINEERING PROCESS. All of the analysis and backtesting was performed on a randomly selected 20% subset (test data) of the entire dataset with the remaining 80% (training data) being used to train the model. All feature engineering processes generated lagged variables for inputs to prevent data leakage (meaning all inputs used in the model are available when it is time to place real bets. Models I have made for other markets (MLB-runline/moneyline, NFL, etc) have returned similar results.  
 
