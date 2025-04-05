@@ -30,3 +30,4 @@ I converted pinnacle's implied probabilities for each game, to the percentage of
 Positive ROI of between 9-12% is obtained after ~1500 bets. Again by placing bets at different locations and ONLY taking bets where my model provides a higher implied probability than the sportsbooks I am able to overcome the vig. Repeated testing on different subsets of randomly selected test data returns similar results! 
 
 ![Profit_testing_for_positive_ROI_Visual](positive_ROI.png)
+![Profit_testing_for_positive_ROI_Visual_2](positive_ROI_2(1).png)
