@@ -7,6 +7,37 @@ This repo shows the results/profitability of an NBA moneyline sports betting mod
 ### Model_training.py
 This is a python code chunk showing the splitting of the dataset into train and test sets. 20% of the data (roughly 1700-2500 games) was used for a test set where all validation/backtesting was done while the remaining 80% was used to train the model. Hyperparameters and model specifics are not disclosed. However different models with well calibrated hyperparameters tend to return similar results.
 
+```
+# =============================================================================================================================================
+'''  Creating train test data splits '''
+# ===============================================================================================================================================
+
+# Split data into features (X) and labels (y)
+X = df.drop('col_1', axis=1)  # Features
+y = df['col_1']  # Target
+
+# Split the data into training and test sets (80% train, 20% test)
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2) # test_size has approximately 3550 samples.
+
+# sportsbooks odds = implied probabilities
+x_test_sportsbooks_odds = x_test['col_39']
+
+x_train_sportsbooks_odds = x_train['col_39']
+
+x_test = x_test.drop('col_39', axis = 1)
+
+x_train = x_train.drop('col_39', axis = 1)
+
+# Train the model
+my_classifier_model.fit(x_train, y_train)
+
+# Make predictions on the test set
+y_pred = my_classifier_model.predict(x_test)
+
+# Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy * 100:.2f}%")
+```
 
 ### Model_output_Regression_Curve.png
 The model produces probabilities that provide us a measure of the model's confidence/certainty in its predictions. If the probability is greater than .5 it predicts the team will win while if the probability is less than .5 it predicts the team will lose. Probabilities closer to 1 or 0 reflect a higher level of confidence in a team winning or losing respectively. In order to confirm that the model's probabilities accurately reflect the expected frequency of teams winning or losing I conducted a logistic regression of the model's predictions for the test set against the true outcome for every game in the test dataset. After running a logistic regression I plotted the model's probabilities on the x-axis and partition the teams that won from those that lost on the y-axis (ie points distributed around 1 (top) means the team won that game, while points distributed around 0 (bottom) means the team lost). We see that the model's predicted probabilities (black line) straddle the line y=x (blue line). This confirms that the model is well-calibrated and produces probabilities that truly reflect a team's likelihood of winning. We also notice that the model is very conservative in its predictions as the model rarely produces a probability greater than .82 or less than .09. I confirm during profit testing against real data that this is non-problematic to generating profitable picks. 
